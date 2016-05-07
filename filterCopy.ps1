@@ -13,8 +13,6 @@ function copyFiles
  (
     [Parameter(Mandatory=$true)][object] $f,
     [Parameter(Mandatory=$true)][string] $p
-    #[Parameter(Mandatory=$false)][int] $c
- 
  )
     if(Test-Path $p)
     {
@@ -54,18 +52,6 @@ ForEach($file in $files)
             Write-Host $mc $file.Name
 
             if($copy){copyFiles $file $copyPath}
-            
-<# 
-            if($copy -and (Test-Path $copyPath))
-            {
-                $file.CopyTo($copyPath+$file.Name)
-                Write-Host $file.Name "Copied"
-            }
-            else
-            {
-                Write-Host "Path does not exist"
-            }
-#>
         }
     }
     else
@@ -76,34 +62,6 @@ ForEach($file in $files)
             Write-Host $mc $file.Name
 
             if($copy){copyFiles $file $copyPath}
-<#
-            if($copy -and (Test-Path $copyPath))
-            {
-                $file.CopyTo($copyPath+$file.Name)
-                Write-Host $file.Name "Copied"
-            }
-            else
-            {
-                Write-Host "Path does not exist"
-            }
-#>
         }
     }
 }
-
-<#
-
-D:\Downloads\Pokemon ROMS + Emulators
-nds
-$i = 0
-ForEach($file in Get-ChildItem "D:\Downloads\Super Nintendo for PC (Every SNES Rom and Emu EVER)\games\Games\Games")
-{
-    if($file -match '\[!\]')
-    {
-        $i = $i+1
-        $file.CopyTo('D:\SNESGames\'+$file.Name)
-        #Copy-Item $file.PSPath "D:\SNESGames" -Verbose
-        Write-Host $i $file.Name
-    }
-}
-#>
