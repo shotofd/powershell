@@ -53,8 +53,6 @@ $files = Get-ChildItem $filePath -Recurse -File
 foreach($file in $files)
 { 
     writeCounter $fc $file
-    #$fc++ 
-    #Write-Host $fc $file 
 }
 
 ForEach($file in $files)
@@ -63,8 +61,6 @@ ForEach($file in $files)
     {
         if($file -notmatch $pattern)
         {
-            #$mc++
-            #Write-Host $mc $file.Name
             writeCounter $mc $file.Name
             if($copy){copyFiles $file $copyPath}
         }
@@ -73,8 +69,6 @@ ForEach($file in $files)
     {
         if($file -match $pattern)
         {
-            #$mc++
-            #Write-Host $mc $file.Name
             writeCounter $mc $file.Name
             if($copy){copyFiles $file $copyPath}
         }
