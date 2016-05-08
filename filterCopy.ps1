@@ -26,6 +26,20 @@ function copyFiles
 
 }
 
+function writeCounter
+{
+ param
+ (
+    [Parameter(Mandatory=$true)][int] $counter,
+    [Parameter(Mandatory=$true)][object] $f
+ )
+
+    $counter++
+    Write-Host $counter $f
+    return $counter
+
+}
+
 $fc = 0
 $mc = 0
 
@@ -38,8 +52,9 @@ $files = Get-ChildItem $filePath -Recurse -File
 
 foreach($file in $files)
 { 
-    $fc++ 
-    Write-Host $fc $file 
+    writeCounter $fc $file
+    #$fc++ 
+    #Write-Host $fc $file 
 }
 
 ForEach($file in $files)
@@ -48,9 +63,9 @@ ForEach($file in $files)
     {
         if($file -notmatch $pattern)
         {
-            $mc++
-            Write-Host $mc $file.Name
-
+            #$mc++
+            #Write-Host $mc $file.Name
+            writeCounter $mc $file.Name
             if($copy){copyFiles $file $copyPath}
         }
     }
@@ -58,9 +73,9 @@ ForEach($file in $files)
     {
         if($file -match $pattern)
         {
-            $mc++
-            Write-Host $mc $file.Name
-
+            #$mc++
+            #Write-Host $mc $file.Name
+            writeCounter $mc $file.Name
             if($copy){copyFiles $file $copyPath}
         }
     }
